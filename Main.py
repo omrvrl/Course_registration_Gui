@@ -1,5 +1,6 @@
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets 
+from PyQt5.QtWidgets import QLineEdit
 from Form import Ui_MainWindow
 from PyQt5.QtWidgets import QTableWidgetItem
 
@@ -23,22 +24,101 @@ class Window(QtWidgets.QMainWindow):
         self.ui.cmb_fakulte.addItems(comboList)
         comboList2 = ['Elektrik Elektronik Muhendisligi','Makina Muhendisligi','Endüstri Muhendisligi','Kimya Muhendisligi','Bilgisayar Muhendisligi']
         self.ui.cmb_bolum.addItems(comboList2)
+#Global Variable
         self.ders_listesi=[]
 
+
+
 # TABLE WİDGET CONFİGURATION
-        self.ui.Table_acilandersler.setRowCount(5)
+        self.ui.Table_acilandersler.setRowCount(10)
         self.ui.Table_acilandersler.setColumnCount(4)
+        # self.ui.Table_Secilen.setRowCount(10)
+        self.ui.Table_Secilen.setColumnCount(4)
         self.ui.Table_acilandersler.setHorizontalHeaderLabels(('Ders Kodu','Ders Adi','Teo Uyg Akts','Kontenjan'))
-        self.ui.Table_acilandersler.setColumnWidth(0,150)
-        self.ui.Table_acilandersler.setColumnWidth(1,200)
-        
-#CONNECT TO FUNCTİONS                                         
+        self.ui.Table_acilandersler.setColumnWidth(0,80)
+        self.ui.Table_acilandersler.setColumnWidth(1,300)
+        self.ui.Table_acilandersler.setColumnWidth(2,90)
+        self.ui.Table_acilandersler.setColumnWidth(3,90)
+        self.ui.Table_acilandersler.setAlternatingRowColors(True)
+        self.ui.Table_acilandersler.setAutoScroll(True)
+        self.ui.Table_Secilen.setColumnWidth(0,100)
+        self.ui.Table_Secilen.setColumnWidth(1,300)
+        self.ui.Table_Secilen.setColumnWidth(2,200)
+        self.ui.Table_Secilen.setColumnWidth(3,200)
+        self.ui.Table_Secilen.setHorizontalHeaderLabels(('Ders Kodu','Ders Adi','Teo Uyg Akts','Kontenjan'))
+        self.ui.Table_Secilen.setAlternatingRowColors(True)
+        row_height = 20  # Set the desired row height
+        for row in range(self.ui.Table_acilandersler.rowCount()):
+            self.ui.Table_acilandersler.setRowHeight(row, row_height)
+            self.ui.Table_Secilen.setRowHeight(row, row_height)
+            self.ui.Table_yerinealinabilecekdersler.setRowHeight(row, row_height)
+            
+
+# CONNECT TO FUNCTİONS                                         
         self.ui.cmb_fakulte.currentIndexChanged.connect(self.ChangedFakulte)        # Loads depertmants
         self.ui.cmb_bolum.currentIndexChanged.connect(self.LoadCoursePackets)            # Ders paketlerini tabloya yükler
         self.ui.radio_1sinif.toggled.connect(self.LoadCoursePackets)
         self.ui.radio_2sinif.toggled.connect(self.LoadCoursePackets)
         self.ui.radio_3sinif.toggled.connect(self.LoadCoursePackets)
         self.ui.radio_4sinif.toggled.connect(self.LoadCoursePackets)
+        self.ui.linedit_ara.textChanged.connect(self.SearchFunc)
+        self.ui.btn_yenidersekle.clicked.connect(self.YeniDersEkle)
+
+    def YeniDersEkle(self):
+        selected_item = self.ui.Table_Secilen.selectedItems()
+        self.ui.Table_Secilen.setHorizontalHeaderLabels(('Ders Kodu','Ders Adi','Teo Uyg Akts','Kontenjan'))
+        
+        for item in self.ui.Table_acilandersler.selectedItems():
+ 
+            # print(item.row(),item.column(),item.text())
+            rowIndex =self.ui.Table_Secilen.rowCount()
+            try:
+
+                if item.text() in [(QTableWidgetItem(self.ui.Table_Secilen.item(row, col))).text() for col in range(self.ui.Table_Secilen.columnCount()) for row in range(self.ui.Table_acilandersler.rowCount())]:
+
+                    raise TypeError('Zaten bu dersi Seçmişsiniz!!!')
+
+                self.ui.Table_Secilen.insertRow(rowIndex)
+                if item.column() == 0:
+                    self.ui.Table_Secilen.setItem(rowIndex,0,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
+                    self.ui.Table_Secilen.setItem(rowIndex,1,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()+1)))
+                    self.ui.Table_Secilen.setItem(rowIndex,2,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()+2)))
+                    self.ui.Table_Secilen.setItem(rowIndex,3,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()+3)))
+
+                elif item.column() == 1:
+                    self.ui.Table_Secilen.setItem(rowIndex,0,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-1)))
+                    self.ui.Table_Secilen.setItem(rowIndex,1,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
+                    self.ui.Table_Secilen.setItem(rowIndex,2,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()+1)))
+                    self.ui.Table_Secilen.setItem(rowIndex,3,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()+2)))
+
+                elif item.column() == 2:
+                    self.ui.Table_Secilen.setItem(rowIndex,0,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-2)))
+                    self.ui.Table_Secilen.setItem(rowIndex,1,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-1)))
+                    self.ui.Table_Secilen.setItem(rowIndex,2,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
+                    self.ui.Table_Secilen.setItem(rowIndex,3,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()+1)))
+                elif item.column() == 3:
+                    self.ui.Table_Secilen.setItem(rowIndex,0,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-3)))
+                    self.ui.Table_Secilen.setItem(rowIndex,1,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-2)))
+                    self.ui.Table_Secilen.setItem(rowIndex,2,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-1)))
+                    self.ui.Table_Secilen.setItem(rowIndex,3,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
+            
+            except TypeError as err:
+                print(err)
+
+            print(rowIndex)
+
+    def SearchFunc(self):
+        text = self.ui.linedit_ara.text().lower()
+        for row in range(self.ui.Table_acilandersler.rowCount()):
+            number_item = self.ui.Table_acilandersler.item(row, 0)
+            name_item = self.ui.Table_acilandersler.item(row, 1)
+            
+            if name_item is not None and text.lower() in name_item.text().lower():
+                self.ui.Table_acilandersler.setRowHidden(row, False)
+            elif number_item is not None and text.lower() in number_item.text().lower():
+                self.ui.Table_acilandersler.setRowHidden(row, False)
+            else:
+                self.ui.Table_acilandersler.setRowHidden(row, True)
 
     def ChangedFakulte(self):
         Selected_fakulte = self.ui.cmb_fakulte.currentText()
@@ -954,12 +1034,12 @@ class Window(QtWidgets.QMainWindow):
 
         self.InserttoTable()
 
-
-
     def InserttoTable(self):
         self.ui.Table_acilandersler.clear()
+        self.ui.Table_acilandersler.setHorizontalHeaderLabels(('Ders Kodu','Ders Adi','Teo Uyg Akts','Kontenjan'))
+
         #TABLE WİDGET İNSERT
-        rowIndex= 1                     
+        rowIndex= 0                     
         for ders in self.ders_listesi:
             
             self.ui.Table_acilandersler.setItem(rowIndex,0,QTableWidgetItem(str(ders['Ders Kodu'])))
@@ -971,6 +1051,10 @@ class Window(QtWidgets.QMainWindow):
 
 
 
+
+
+
+
 def app():
     app= QtWidgets.QApplication(sys.argv)
     win = Window()
@@ -978,26 +1062,3 @@ def app():
     sys.exit(app.exec_())
 app()
 
-
-
-#FUNCTİONS #START
-    # def LoadtoComboBox(self,liste):
-    #     liste = self.ui.cmb_fakulte.currentText()
-    #     self.ui.cmb_bolum.clear()
-
-    #     if liste == 'Mühendislik Mimarlık Fakültesi':
-    #         comboList2 = ['Elektrik Elektronik Muhendisligi','Makina Muhendisligi','Endüstri Muhendisligi','Kimya Muhendisligi','Bilgisayar Muhendisligi']
-            
-    #     elif liste == 'Diş Hekimliği Fakültesi':
-    #         comboList2 = ['Ağız Diş ve Çene Cerrahisi','Endonti','Ortodonti','Pedodonti','Protik Diş Tedavisi']
-            
-    #     elif liste == 'Tıp Fakültesi':
-    #         comboList2 = ['Temel Tıp Bilimleri Bölümü','Dahili Tıp Bilimleri Bölümü','Cerrahi Tıp Bilimleri Bölümü']
-
-    #     elif liste == 'Hukuk Fakültesi':
-    #         comboList2 = ['Anayasa Hukuku','Roma Hukuku','Ticaret Hukuku','Medeni Hukuk','Ceza Hukuku']
-        
-    #     elif liste == 'İktisadi ve İdari Bilimler Fakültesi':
-    #         comboList2 = ['İşletme Bölümü','Maliye Bölümü','İktisat Bölümü','Siyaset Bilimi ve Kamu Yönetimi Bölümü','Uluslararası İlişkiler Bölümü(%30 İngilizce)']
-            
-    #  
