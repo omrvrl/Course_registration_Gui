@@ -3,7 +3,8 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QLineEdit
 from Form import Ui_MainWindow
 from PyQt5.QtWidgets import QTableWidgetItem
-
+import random
+from PyQt5.QtGui import QColor, QBrush
 
 
 class Window(QtWidgets.QMainWindow):
@@ -26,7 +27,41 @@ class Window(QtWidgets.QMainWindow):
         self.ui.cmb_bolum.addItems(comboList2)
 #Global Variable
         self.ders_listesi=[]
+        self.sayi1 = random.randint(1,100)
+        self.sayi2 = random.randint(1,100)
 
+        self.ui.lbl_toplamiyazin.setText(f"TOPLAMI YAZIN: {self.sayi1} + {self.sayi2}")
+        self.ders_tarihleri=[
+            {'1512201' : {'row': [1,2,3] , 'col': 1}},              #1 -> 9.00  2 -> 10.00 3 -> 11.00 4-> 12.00 5->13.00 6->14.00  ||| pazart 1 salı 2 çarş 3 
+            {'1151202': {'row': [5,6,7] , 'col': 1}},            #7 -> 15.00 8 -> 16.00 9 -> 17.00 10 -> 18.00 11 -> 19.00          perş 4 cuma 5 cumart 6
+            {'1151203': {'row': [8,9] , 'col': 1}}             #12 -> 20.00 13 -> 21.00 14 ->22.00 15 -> 23.00 
+            {'1512204' : {'row': [1,2,3] , 'col': 2}},
+            {'1151205': {'row': [6,7,8] , 'col': 2}},
+            {'1151206': {'row': [8,9,10] , 'col': 2}}
+            {'1512207' : {'row': [2,3,4] , 'col': 3}},
+            {'1151208': {'row': [7,8] , 'col': 3}},
+            {'1151209': {'row': [5,6,7] , 'col': 3}},
+            {'1512210' : {'row': [1,2,3] , 'col': 4}},
+            {'1512211': {'row': [1,2,3] , 'col': 4}},
+            {'1512212': {'row': [6,7] , 'col': 4}}
+            {'1512213' : {'row': [2,3] , 'col': 5}},
+            {'11512214': {'row': [7,8] , 'col': 5}},
+            {'11512215': {'row': [6,7] , 'col': 6}},
+            {'1512216' : {'row': [10,11,12] , 'col': 1}},
+            {'1151217': {'row': [10,11,12] , 'col': 1}},
+            {'1151218': {'row': [13] , 'col': 1}}   
+            {'1512219' : {'row': [9,10,11] , 'col': 2}},
+            {'1151220': {'row': [12] , 'col': 2}},
+            {'1151221': {'row': [11,12] , 'col': 2}}
+            {'1512222' : {'row': [9,10,11] , 'col': 3}},
+            {'11512223': {'row': [10,11] , 'col': 3}},
+            {'15122024' : {'row': [10,11] , 'col': 4}},
+            {'11512224': {'row': [9] , 'col': 4}},
+            {'11512226': {'row': [11,12] , 'col': 4}},
+            {'15122027' : {'row': [10,11] , 'col': 5}},
+            {'11512028': {'row': [9,10] , 'col': 5}},
+            {'11512229': {'row': [6,7] , 'col': 6}}
+        ]
 
 
 # TABLE WİDGET CONFİGURATION
@@ -52,7 +87,17 @@ class Window(QtWidgets.QMainWindow):
             self.ui.Table_acilandersler.setRowHeight(row, row_height)
             self.ui.Table_Secilen.setRowHeight(row, row_height)
             self.ui.Table_yerinealinabilecekdersler.setRowHeight(row, row_height)
-            
+        self.ui.Table_DersProgrami.setColumnCount(7)
+        self.ui.Table_DersProgrami.setRowCount(16)
+        # self.ui.Table_DersProgrami.setItem(0,0,QTableWidgetItem('Saat'))
+        self.ui.Table_DersProgrami.setHorizontalHeaderLabels(['Saat','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'])
+        self.ui.Table_DersProgrami.setVerticalHeaderLabels(['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'])
+        
+        for row in range(self.ui.Table_DersProgrami.rowCount()):
+            self.ui.Table_DersProgrami.setRowHeight(row,5)
+            for col in range(self.ui.Table_DersProgrami.columnCount()):
+                self.ui.Table_DersProgrami.setColumnWidth(row,91)
+
 
 # CONNECT TO FUNCTİONS                                         
         self.ui.cmb_fakulte.currentIndexChanged.connect(self.ChangedFakulte)        # Loads depertmants
@@ -63,9 +108,17 @@ class Window(QtWidgets.QMainWindow):
         self.ui.radio_4sinif.toggled.connect(self.LoadCoursePackets)
         self.ui.linedit_ara.textChanged.connect(self.SearchFunc)
         self.ui.btn_yenidersekle.clicked.connect(self.YeniDersEkle)
+        self.ui.btn_derslerikaydet.clicked.connect(self.DersleriKaydet)
+
+    def DersleriKaydet(self):
+        if (self.sayi1 + self.sayi2) ==  int(self.ui.linedit_toplam.text()):
+            print('TEBRİKLER DERSLERİNİZ BAŞARIYLA KAYDEDİLDİ.')
+        else:
+            print('Lütfen girilen sayıları doğru toplayınız.')
+        
+        
 
     def YeniDersEkle(self):
-        selected_item = self.ui.Table_Secilen.selectedItems()
         self.ui.Table_Secilen.setHorizontalHeaderLabels(('Ders Kodu','Ders Adi','Teo Uyg Akts','Kontenjan'))
         
         for item in self.ui.Table_acilandersler.selectedItems():
@@ -101,11 +154,53 @@ class Window(QtWidgets.QMainWindow):
                     self.ui.Table_Secilen.setItem(rowIndex,1,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-2)))
                     self.ui.Table_Secilen.setItem(rowIndex,2,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-1)))
                     self.ui.Table_Secilen.setItem(rowIndex,3,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
-            
+                self.AddtoDersProgrami(rowIndex)
             except TypeError as err:
                 print(err)
 
-            print(rowIndex)
+            
+
+    def AddtoDersProgrami(self,rowIndex):
+        ders = self.ui.Table_Secilen.item(rowIndex,1)
+        # print(ders.text())
+        brush = QBrush(QColor(200, 243, 178))  # RGB color (red)
+        if 
+        if ders.text() == 'OBJECT ORIENTED PROGRAMMING I':
+            self.ui.Table_DersProgrami.setItem(1,0,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.setItem(2,0,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.item(1,0).setBackground(brush)
+            self.ui.Table_DersProgrami.item(2,0).setBackground(brush)
+
+
+        elif ders.text()  == 'INTRODUCTION TO EMBEDDED SYSTEMS':
+            self.ui.Table_DersProgrami.setItem(1,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.setItem(2,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.setItem(3,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.item(1,1).setBackground(brush)
+            self.ui.Table_DersProgrami.item(2,1).setBackground(brush)           
+            self.ui.Table_DersProgrami.item(3,1).setBackground(brush)           
+
+        elif ders.text()  == 'DIGITAL SIGNAL PROCESSING':
+            self.ui.Table_DersProgrami.setItem(7,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.setItem(8,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.item(7,1).setBackground(brush)           
+            self.ui.Table_DersProgrami.item(8,1).setBackground(brush)       
+
+        elif ders.text()  == 'POWER SYSTEM ANALYSIS I':
+            self.ui.Table_DersProgrami.setItem(1,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.setItem(2,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.setItem(3,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.item(1,2).setBackground(brush)
+            self.ui.Table_DersProgrami.item(2,2).setBackground(brush)           
+            self.ui.Table_DersProgrami.item(3,2).setBackground(brush)
+
+        elif ders.text()  == 'THE ENGINEER AND SOCIETY':
+            self.ui.Table_DersProgrami.setItem(5,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.setItem(6,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+            self.ui.Table_DersProgrami.item(5,5).setBackground(brush)           
+            self.ui.Table_DersProgrami.item(6,5).setBackground(brush)
+        else:
+            print('fail')
 
     def SearchFunc(self):
         text = self.ui.linedit_ara.text().lower()
@@ -1048,12 +1143,6 @@ class Window(QtWidgets.QMainWindow):
             self.ui.Table_acilandersler.setItem(rowIndex,3,QTableWidgetItem(ders['Kontenjan']))
             
             rowIndex +=1
-
-
-
-
-
-
 
 def app():
     app= QtWidgets.QApplication(sys.argv)
