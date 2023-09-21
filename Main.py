@@ -32,36 +32,36 @@ class Window(QtWidgets.QMainWindow):
 
         self.ui.lbl_toplamiyazin.setText(f"TOPLAMI YAZIN: {self.sayi1} + {self.sayi2}")
         self.ders_tarihleri=[
-            {'1512201' : {'row': [1,2,3] , 'col': 1}},              #1 -> 9.00  2 -> 10.00 3 -> 11.00 4-> 12.00 5->13.00 6->14.00  ||| pazart 1 salı 2 çarş 3 
-            {'1151202': {'row': [5,6,7] , 'col': 1}},            #7 -> 15.00 8 -> 16.00 9 -> 17.00 10 -> 18.00 11 -> 19.00          perş 4 cuma 5 cumart 6
-            {'1151203': {'row': [8,9] , 'col': 1}}             #12 -> 20.00 13 -> 21.00 14 ->22.00 15 -> 23.00 
-            {'1512204' : {'row': [1,2,3] , 'col': 2}},
-            {'1151205': {'row': [6,7,8] , 'col': 2}},
-            {'1151206': {'row': [8,9,10] , 'col': 2}}
-            {'1512207' : {'row': [2,3,4] , 'col': 3}},
-            {'1151208': {'row': [7,8] , 'col': 3}},
-            {'1151209': {'row': [5,6,7] , 'col': 3}},
-            {'1512210' : {'row': [1,2,3] , 'col': 4}},
-            {'1512211': {'row': [1,2,3] , 'col': 4}},
-            {'1512212': {'row': [6,7] , 'col': 4}}
-            {'1512213' : {'row': [2,3] , 'col': 5}},
-            {'11512214': {'row': [7,8] , 'col': 5}},
-            {'11512215': {'row': [6,7] , 'col': 6}},
-            {'1512216' : {'row': [10,11,12] , 'col': 1}},
-            {'1151217': {'row': [10,11,12] , 'col': 1}},
-            {'1151218': {'row': [13] , 'col': 1}}   
-            {'1512219' : {'row': [9,10,11] , 'col': 2}},
-            {'1151220': {'row': [12] , 'col': 2}},
-            {'1151221': {'row': [11,12] , 'col': 2}}
-            {'1512222' : {'row': [9,10,11] , 'col': 3}},
-            {'11512223': {'row': [10,11] , 'col': 3}},
-            {'15122024' : {'row': [10,11] , 'col': 4}},
-            {'11512224': {'row': [9] , 'col': 4}},
-            {'11512226': {'row': [11,12] , 'col': 4}},
-            {'15122027' : {'row': [10,11] , 'col': 5}},
-            {'11512028': {'row': [9,10] , 'col': 5}},
-            {'11512229': {'row': [6,7] , 'col': 6}}
-        ]
+            {'Kod': '1512201' , 'row': [1,2,3] , 'col': 1},              #1 -> 9.00  2 -> 10.00 3 -> 11.00 4-> 12.00 5->13.00 6->14.00  ||| pazart 1 salı 2 çarş 3 
+            {'Kod': '1512202' , 'row': [5,6,7] , 'col': 1},            #7 -> 15.00 8 -> 16.00 9 -> 17.00 10 -> 18.00 11 -> 19.00          perş 4 cuma 5 cumart 6
+            {'Kod': '1512203' , 'row': [8,9] , 'col': 1},           #12 -> 20.00 13 -> 21.00 14 ->22.00 15 -> 23.00 
+            {'Kod': '1512204' , 'row': [1,2,3] , 'col': 2},
+            {'Kod': '1512205' , 'row': [6,7,8] , 'col': 2},
+            {'Kod': '1512206' , 'row': [8,9,10] , 'col': 2},
+            {'Kod': '1512207' , 'row': [2,3,4] , 'col': 3},
+            {'Kod': '1512208' , 'row': [7,8] , 'col': 3},
+            {'Kod': '1512209' , 'row': [5,6,7] , 'col': 3},
+            {'Kod': '1512210' , 'row': [1,2,3] , 'col': 4},
+            {'Kod': '1512211' , 'row': [1,2,3] , 'col': 4},
+            {'Kod': '1512212' , 'row': [6,7] , 'col': 4},
+            {'Kod': '1512213' , 'row': [2,3] , 'col': 5},
+            {'Kod': '1512214' , 'row': [7,8] , 'col': 5},
+            {'Kod': '1512215' , 'row': [6,7] , 'col': 6},
+            {'Kod': '1512216' , 'row': [10,11,12] , 'col': 1},
+            {'Kod': '1512217' , 'row': [10,11,12] , 'col': 1},
+            {'Kod': '1512218' , 'row': [13] , 'col': 1},   
+            {'Kod': '1512219' , 'row': [9,10,11] , 'col': 2 },
+            {'Kod': '1512220' , 'row': [12] , 'col': 2},
+            {'Kod': '1512221' , 'row': [11,12] , 'col': 2},
+            {'Kod': '1512222' , 'row': [9,10,11] , 'col': 3},
+            {'Kod': '1512223' , 'row': [10,11] , 'col': 3},
+            {'Kod': '1512224' , 'row': [10,11] , 'col': 4},
+            {'Kod': '1512224' , 'row': [9] , 'col': 4},
+            {'Kod': '1512226' , 'row': [11,12] , 'col': 4},
+            {'Kod': '1512227' , 'row': [10,11] , 'col': 5},
+            {'Kod': '151228' ,  'row': [9,10] , 'col': 5},
+            {'Kod': '1512229' , 'row': [6,7] , 'col': 6}]
+        
 
 
 # TABLE WİDGET CONFİGURATION
@@ -127,6 +127,7 @@ class Window(QtWidgets.QMainWindow):
             rowIndex =self.ui.Table_Secilen.rowCount()
             try:
 
+                self.AddtoDersProgrami(rowIndex)
                 if item.text() in [(QTableWidgetItem(self.ui.Table_Secilen.item(row, col))).text() for col in range(self.ui.Table_Secilen.columnCount()) for row in range(self.ui.Table_acilandersler.rowCount())]:
 
                     raise TypeError('Zaten bu dersi Seçmişsiniz!!!')
@@ -154,53 +155,52 @@ class Window(QtWidgets.QMainWindow):
                     self.ui.Table_Secilen.setItem(rowIndex,1,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-2)))
                     self.ui.Table_Secilen.setItem(rowIndex,2,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-1)))
                     self.ui.Table_Secilen.setItem(rowIndex,3,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
-                self.AddtoDersProgrami(rowIndex)
             except TypeError as err:
                 print(err)
 
             
 
     def AddtoDersProgrami(self,rowIndex):
-        ders = self.ui.Table_Secilen.item(rowIndex,1)
-        # print(ders.text())
+        ders = self.ui.Table_Secilen.item(rowIndex,0)
+        print(ders.text())
         brush = QBrush(QColor(200, 243, 178))  # RGB color (red)
-        print
-        if ders.text() == 'OBJECT ORIENTED PROGRAMMING I':
-            self.ui.Table_DersProgrami.setItem(1,0,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.setItem(2,0,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.item(1,0).setBackground(brush)
-            self.ui.Table_DersProgrami.item(2,0).setBackground(brush)
+        
+        for liste in self.ders_listesi:
+            if ders.text() == liste['Kod']:
+                for ro in liste['row']:
+                    self.ui.Table_DersProgrami.setItem(liste['row'],liste['col'],QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+                    self.ui.Table_DersProgrami.item(liste['row'],liste['col']).setBackground(brush)
 
 
-        elif ders.text()  == 'INTRODUCTION TO EMBEDDED SYSTEMS':
-            self.ui.Table_DersProgrami.setItem(1,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.setItem(2,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.setItem(3,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.item(1,1).setBackground(brush)
-            self.ui.Table_DersProgrami.item(2,1).setBackground(brush)           
-            self.ui.Table_DersProgrami.item(3,1).setBackground(brush)           
+        # elif ders.text()  == 'INTRODUCTION TO EMBEDDED SYSTEMS':
+        #     self.ui.Table_DersProgrami.setItem(1,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.setItem(2,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.setItem(3,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.item(1,1).setBackground(brush)
+        #     self.ui.Table_DersProgrami.item(2,1).setBackground(brush)           
+        #     self.ui.Table_DersProgrami.item(3,1).setBackground(brush)           
 
-        elif ders.text()  == 'DIGITAL SIGNAL PROCESSING':
-            self.ui.Table_DersProgrami.setItem(7,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.setItem(8,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.item(7,1).setBackground(brush)           
-            self.ui.Table_DersProgrami.item(8,1).setBackground(brush)       
+        # elif ders.text()  == 'DIGITAL SIGNAL PROCESSING':
+        #     self.ui.Table_DersProgrami.setItem(7,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.setItem(8,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.item(7,1).setBackground(brush)           
+        #     self.ui.Table_DersProgrami.item(8,1).setBackground(brush)       
 
-        elif ders.text()  == 'POWER SYSTEM ANALYSIS I':
-            self.ui.Table_DersProgrami.setItem(1,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.setItem(2,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.setItem(3,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.item(1,2).setBackground(brush)
-            self.ui.Table_DersProgrami.item(2,2).setBackground(brush)           
-            self.ui.Table_DersProgrami.item(3,2).setBackground(brush)
+        # elif ders.text()  == 'POWER SYSTEM ANALYSIS I':
+        #     self.ui.Table_DersProgrami.setItem(1,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.setItem(2,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.setItem(3,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.item(1,2).setBackground(brush)
+        #     self.ui.Table_DersProgrami.item(2,2).setBackground(brush)           
+        #     self.ui.Table_DersProgrami.item(3,2).setBackground(brush)
 
-        elif ders.text()  == 'THE ENGINEER AND SOCIETY':
-            self.ui.Table_DersProgrami.setItem(5,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.setItem(6,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-            self.ui.Table_DersProgrami.item(5,5).setBackground(brush)           
-            self.ui.Table_DersProgrami.item(6,5).setBackground(brush)
-        else:
-            print('fail')
+        # elif ders.text()  == 'THE ENGINEER AND SOCIETY':
+        #     self.ui.Table_DersProgrami.setItem(5,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.setItem(6,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
+        #     self.ui.Table_DersProgrami.item(5,5).setBackground(brush)           
+        #     self.ui.Table_DersProgrami.item(6,5).setBackground(brush)
+        # else:
+        #     print('fail')
 
     def SearchFunc(self):
         text = self.ui.linedit_ara.text().lower()
