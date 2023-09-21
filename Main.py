@@ -164,7 +164,7 @@ class Window(QtWidgets.QMainWindow):
         ders = self.ui.Table_Secilen.item(rowIndex,1)
         # print(ders.text())
         brush = QBrush(QColor(200, 243, 178))  # RGB color (red)
-        if 
+        print
         if ders.text() == 'OBJECT ORIENTED PROGRAMMING I':
             self.ui.Table_DersProgrami.setItem(1,0,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
             self.ui.Table_DersProgrami.setItem(2,0,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
