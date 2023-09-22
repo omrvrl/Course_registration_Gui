@@ -161,11 +161,10 @@ class Window(QtWidgets.QMainWindow):
             
 
     def AddtoDersProgrami(self,rowIndex):
-        ders = self.ui.Table_Secilen.item(rowIndex,0)
-        print(ders.text())
+        ders = QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0))
         brush = QBrush(QColor(200, 243, 178))  # RGB color (red)
-        
-        for liste in self.ders_listesi:
+    
+        for liste in self.ders_tarihleri:
             if ders.text() == liste['Kod']:
                 for ro in liste['row']:
                     self.ui.Table_DersProgrami.setItem(liste['row'],liste['col'],QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
