@@ -15,8 +15,6 @@ class Window(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
 #DEFAULT RADİO BUTON İTEM                                    -----------------> RADIO
-        self.ui.radio_4sinif.setChecked(True)
-        self.ui.radio_1sinif_alt.setChecked(True)
 
 
 #DEFAULT COMBOBOX PROMPT                                    ---------------> COMBOBOX
@@ -36,7 +34,7 @@ class Window(QtWidgets.QMainWindow):
             {'Kod': '1512202' , 'row': [5,6,7] , 'col': 1},       
             {'Kod': '1512203' , 'row': [8,9] , 'col': 1},          
             {'Kod': '1512204' , 'row': [1,2,3] , 'col': 2},
-            {'Kod': '1512205' , 'row': [6,7,8] , 'col': 2},
+            {'Kod': '1512205' , 'row': [6,7,8] , 'col': 2},   
             {'Kod': '1512206' , 'row': [8,9,10] , 'col': 2},
             {'Kod': '1512207' , 'row': [2,3,4] , 'col': 3},
             {'Kod': '1512208' , 'row': [7,8] , 'col': 3},
@@ -159,13 +157,11 @@ class Window(QtWidgets.QMainWindow):
             except TypeError as err:
                 print(err)
 
-            
 
     def AddtoDersProgrami(self,rowIndex):
         ders = QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0))
         brush = QBrush(QColor(200, 243, 178))  # RGB color (red)
         for liste in self.ders_tarihleri:
-            print(f'addtodersprogramı: {liste["Kod"]} --> {ders.text()}')
             if liste['Kod'] == ders.text():
                 for ro in liste['row']:
                     self.ui.Table_DersProgrami.setItem(ro,liste['col'],QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0)))
@@ -175,15 +171,16 @@ class Window(QtWidgets.QMainWindow):
         # ders = QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0))
         for liste in self.ders_tarihleri:
             for ders in self.ui.Table_acilandersler.selectedItems():
-                print(liste['Kod'])
-                print(QTableWidgetItem(self.ui.Table_acilandersler.item(ders.row(),0)).text())
+                # print(QTableWidgetItem(self.ui.Table_acilandersler.item(ders.row(),0)).text())
                 if liste['Kod'] == QTableWidgetItem(self.ui.Table_acilandersler.item(ders.row(),0)).text():
-                    for ro in liste['row']:
-                        if (ro,liste['col']) not in self.overlapList:
+                    print(liste['row'])
+                    if not any((a in liste['row']) and (b == liste['col']) for a, b in self.overlapList):
+                        for ro in liste['row']:
                             self.overlapList.append((ro,liste['col']))
-                            return False
-                        elif ro == len(liste['row']):
-                            print('overlapping')
+                        return False
+                    else:
+                        print('overlapping')
+                        return True    
                 else:
                     print('--')
 
