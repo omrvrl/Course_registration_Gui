@@ -179,40 +179,9 @@ class Window(QtWidgets.QMainWindow):
                             self.overlapList.append((ro,liste['col']))
                         return False
                     else:
-                        print('overlapping')
                         return True    
                 else:
                     print('--')
-
-        # elif ders.text()  == 'INTRODUCTION TO EMBEDDED SYSTEMS':
-        #     self.ui.Table_DersProgrami.setItem(1,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.setItem(2,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.setItem(3,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.item(1,1).setBackground(brush)
-        #     self.ui.Table_DersProgrami.item(2,1).setBackground(brush)           
-        #     self.ui.Table_DersProgrami.item(3,1).setBackground(brush)           
-
-        # elif ders.text()  == 'DIGITAL SIGNAL PROCESSING':
-        #     self.ui.Table_DersProgrami.setItem(7,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.setItem(8,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.item(7,1).setBackground(brush)           
-        #     self.ui.Table_DersProgrami.item(8,1).setBackground(brush)       
-
-        # elif ders.text()  == 'POWER SYSTEM ANALYSIS I':
-        #     self.ui.Table_DersProgrami.setItem(1,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.setItem(2,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.setItem(3,2,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.item(1,2).setBackground(brush)
-        #     self.ui.Table_DersProgrami.item(2,2).setBackground(brush)           
-        #     self.ui.Table_DersProgrami.item(3,2).setBackground(brush)
-
-        # elif ders.text()  == 'THE ENGINEER AND SOCIETY':
-        #     self.ui.Table_DersProgrami.setItem(5,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.setItem(6,5,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-        #     self.ui.Table_DersProgrami.item(5,5).setBackground(brush)           
-        #     self.ui.Table_DersProgrami.item(6,5).setBackground(brush)
-        # else:
-        #     print('fail')
 
     def SearchFunc(self):
         text = self.ui.linedit_ara.text().lower()
