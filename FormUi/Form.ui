@@ -78,7 +78,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>100</y>
+      <y>120</y>
       <width>711</width>
       <height>20</height>
      </rect>
@@ -122,7 +122,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>110</y>
+      <y>130</y>
       <width>261</width>
       <height>21</height>
      </rect>
@@ -292,7 +292,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>170</y>
+      <y>180</y>
       <width>711</width>
       <height>161</height>
      </rect>
@@ -307,7 +307,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>130</y>
+      <y>150</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -528,6 +528,52 @@
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>20</y>
+      <width>101</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>101</width>
+      <height>81</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    background-image: url(&quot;:/yeniÖnek/20200406220947!Esogu_logo.png&quot;);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../test.qrc">:/yeniÖnek/20200406220947!Esogu_logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="indent">
+     <number>6</number>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::NoTextInteraction</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -536,11 +582,13 @@
      <x>0</x>
      <y>0</y>
      <width>1327</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../test.qrc"/>
+ </resources>
  <connections/>
 </ui>

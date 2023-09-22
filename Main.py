@@ -46,19 +46,38 @@ class Window(QtWidgets.QMainWindow):
             {'Kod': '1512214' , 'row': [7,8] , 'col': 5},
             {'Kod': '1512215' , 'row': [6,7] , 'col': 6},
             {'Kod': '1512216' , 'row': [10,11,12] , 'col': 1},
-            {'Kod': '1512217' , 'row': [10,11,12] , 'col': 1},
-            {'Kod': '1512218' , 'row': [13] , 'col': 1},   
-            {'Kod': '1512219' , 'row': [9,10,11] , 'col': 2 },
-            {'Kod': '1512220' , 'row': [12] , 'col': 2},
-            {'Kod': '1512221' , 'row': [11,12] , 'col': 2},
-            {'Kod': '1512222' , 'row': [9,10,11] , 'col': 3},
-            {'Kod': '1512223' , 'row': [10,11] , 'col': 3},
-            {'Kod': '1512224' , 'row': [10,11] , 'col': 4},
-            {'Kod': '1512224' , 'row': [9] , 'col': 4},
-            {'Kod': '1512226' , 'row': [11,12] , 'col': 4},
-            {'Kod': '1512227' , 'row': [10,11] , 'col': 5},
-            {'Kod': '1512228' ,  'row': [9,10] , 'col': 5},
-            {'Kod': '1512229' , 'row': [6,7] , 'col': 6}]
+            {'Kod': '1512231' , 'row': [9,10] , 'col': 1},
+            {'Kod': '1512217' , 'row': [2,3,4] , 'col': 1},
+            {'Kod': '1512218' , 'row': [11,12] , 'col': 1},   
+            {'Kod': '1512234' , 'row': [13,14,15] , 'col': 1},   
+            {'Kod': '1512219' , 'row': [4,5,6] , 'col': 2 },
+            {'Kod': '1512238' , 'row': [1,2,3] , 'col': 2 },
+            {'Kod': '1512220' , 'row': [13,14] , 'col': 1},
+            {'Kod': '1512243' , 'row': [12] , 'col': 1},
+            {'Kod': '1512242' , 'row': [10,11,12] , 'col': 2},
+            {'Kod': '1512240' , 'row': [7,8] , 'col': 2},
+            {'Kod': '1512239' , 'row': [9,10,11] , 'col': 3},
+            {'Kod': '1512237' , 'row': [1,2,3] , 'col': 3},
+            {'Kod': '1512235' , 'row': [7,8] , 'col': 4},
+            {'Kod': '1512223' , 'row': [1,2,3] , 'col': 4},
+            {'Kod': '1512224' , 'row': [12,13] , 'col': 5},
+            {'Kod': '1512225' , 'row': [10,11] , 'col': 5},
+            {'Kod': '1512223' , 'row': [9,10] , 'col':6 },
+            {'Kod': '1512233' , 'row': [5,6] , 'col': 1},
+            {'Kod': '1512226' , 'row': [1,2,3] , 'col': 1},
+            {'Kod': '1512232' , 'row': [1,2,3] , 'col': 2},
+            {'Kod': '1512227' , 'row': [5,6,7] , 'col': 2},
+            {'Kod': '1512230' , 'row': [2,3,4] , 'col': 3},
+            {'Kod': '1512221' ,  'row': [9,10] , 'col': 3},
+            {'Kod': '1512228' ,  'row': [11,12] , 'col': 3},
+            {'Kod': '1512229' , 'row': [8,9,10] , 'col': 4},
+            {'Kod': '1512222' , 'row': [6,7] , 'col': 4},
+            {'Kod': '1512236' , 'row': [2,3,4] , 'col': 4},
+            {'Kod': '1512241' , 'row': [5,6,7] , 'col': 5},
+            {'Kod': '1512244' , 'row': [1,2,3] , 'col': 5},
+            {'Kod': '1512245' , 'row': [8,9] , 'col': 6}]
+            
+            
         self.overlapList=[]
 
 
@@ -85,16 +104,16 @@ class Window(QtWidgets.QMainWindow):
             self.ui.Table_acilandersler.setRowHeight(row, row_height)
             self.ui.Table_Secilen.setRowHeight(row, row_height)
             self.ui.Table_yerinealinabilecekdersler.setRowHeight(row, row_height)
-        self.ui.Table_DersProgrami.setColumnCount(7)
+        self.ui.Table_DersProgrami.setColumnCount(6)
         self.ui.Table_DersProgrami.setRowCount(16)
         # self.ui.Table_DersProgrami.setItem(0,0,QTableWidgetItem('Saat'))
-        self.ui.Table_DersProgrami.setHorizontalHeaderLabels(['Saat','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'])
+        self.ui.Table_DersProgrami.setHorizontalHeaderLabels(['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'])
         self.ui.Table_DersProgrami.setVerticalHeaderLabels(['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'])
         
         for row in range(self.ui.Table_DersProgrami.rowCount()):
             self.ui.Table_DersProgrami.setRowHeight(row,5)
             for col in range(self.ui.Table_DersProgrami.columnCount()):
-                self.ui.Table_DersProgrami.setColumnWidth(row,91)
+                self.ui.Table_DersProgrami.setColumnWidth(row,105)
 
 
 # CONNECT TO FUNCTİONS                                         
@@ -120,7 +139,6 @@ class Window(QtWidgets.QMainWindow):
         self.ui.Table_Secilen.setHorizontalHeaderLabels(('Ders Kodu','Ders Adi','Teo Uyg Akts','Kontenjan'))
         
         for item in self.ui.Table_acilandersler.selectedItems():
- 
             # print(item.row(),item.column(),item.text())
             rowIndex =self.ui.Table_Secilen.rowCount()
             try:
@@ -156,7 +174,6 @@ class Window(QtWidgets.QMainWindow):
                 self.AddtoDersProgrami(rowIndex)
             except TypeError as err:
                 print(err)
-
 
     def AddtoDersProgrami(self,rowIndex):
         ders = QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0))
@@ -220,7 +237,6 @@ class Window(QtWidgets.QMainWindow):
     def LoadCoursePackets(self):                                                 # Fakültelere yönlendirir. # her fonksiyona changed.connect ten dolayı iki defa giriyor.
         Selected_fakulte = self.ui.cmb_fakulte.currentText()
         if Selected_fakulte == 'Mühendislik Mimarlik Fakültesi': 
-
             self.fillTAbleforMuhendislik()                                
         elif Selected_fakulte == 'Diş Hekimliği Fakültesi':
             print('diş girildi')
@@ -241,7 +257,7 @@ class Window(QtWidgets.QMainWindow):
             for ders in items:   
                 if ders.text() == '4.Sınıf' and ders.isChecked():                                        
                     self.ders_listesi =[
-                        {'Ders Kodu' : 1512201, 'Ders Adı':'4 ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512201, 'Ders Adı':'OBJECT ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
                         {'Ders Kodu' : 1512202, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
                         {'Ders Kodu' : 1512203, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
                         {'Ders Kodu' : 1512205, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
@@ -249,63 +265,63 @@ class Window(QtWidgets.QMainWindow):
 
                 elif ders.text() == '3.Sınıf' and ders.isChecked():                                       
                     self.ders_listesi=[
-                        {'Ders Kodu' : 151220004, 'Ders Adı':'3OBJECT ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220007, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220008, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220009, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220010, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 1512225, 'Ders Adı':'COMMUNICATIONS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512223, 'Ders Adı':'ELECTRONICS II','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512233, 'Ders Adı':'LOGIC DESIGN','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512226, 'Ders Adı':'CONTROL SYSTEMS LABORATORY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512232, 'Ders Adı':'INTRODUCTION TO PROJECT MANAGEMENT','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
 
                 elif ders.text() == '2.Sınıf' and ders.isChecked():                                   
                     self.ders_listesi=[
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'2OBJECT ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 1512227, 'Ders Adı':'CIRCUIT ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512230, 'Ders Adı':'CIRCUITS  LABORATORY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512221, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512228, 'Ders Adı':'ELECTROMAGNETIC WAVES','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512229, 'Ders Adı':'SYSTEMS AND SIGNALS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
 
                 elif ders.text() == '1.Sınıf' and ders.isChecked():
                     self.ders_listesi=[
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'OBJECT ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' :1512236, 'Ders Adı':'CALCULUS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512241 , 'Ders Adı':'CHEMISTRY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512244, 'Ders Adı':'INTRODUCTION TO PROGRAMMING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' :1512245 , 'Ders Adı':'ATATÜRK İLKE.VE İNK.TARİHİ I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512222, 'Ders Adı':'TECHNICAL  WRITING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
          
-        elif self.ui.cmb_bolum.currentText() == 'Makina Muhendisligi':                               ##### MAKINE MÜHENDİSLİĞİ
+        elif self.ui.cmb_bolum.currentText() == 'Makina Muhendisligi':                               ##### MAKINE MÜHENDİSLİĞİ1512227
             items=self.ui.Group_AcilanDers.findChildren(QtWidgets.QRadioButton)    
             for ders in items:   
                 if ders.text() == '4.Sınıf' and ders.isChecked():
                     self.ders_listesi = [
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'4.  Muhendisliginde Tasarım (I)','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'Makine Laboratuvarı (I)','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'Sektörde İş Sağ. ve Güven.','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'Makine Muhendisliginde Tasarım (II)','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'Project Management','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 151220021, 'Ders Adı':'4.  Muhendisliginde Tasarım (I)','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220022, 'Ders Adı':'Makine Laboratuvarı (I)','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220023, 'Ders Adı':'Sektörde İş Sağ. ve Güven.','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220024, 'Ders Adı':'Makine Muhendisliginde Tasarım (II)','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220025, 'Ders Adı':'Project Management','TeoUygKrediAkts': '2 0 2 3', 'Kontenjan': '0/50'}]
                  
         
                 elif ders.text() == '3.Sınıf'and ders.isChecked():
                     self.ders_listesi=[
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'3.  ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 151220026, 'Ders Adı':'3.  ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220027, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220028, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220029, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220030, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
                  
                 elif ders.text() == '2.Sınıf' and ders.isChecked():
                     self.ders_listesi=[
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'2. ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 151220036, 'Ders Adı':'2. ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220037, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220038, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220039, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220040, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
                
                 elif ders.text() == '1.Sınıf' and ders.isChecked():
                     self.ders_listesi=[
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'1.  ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 151220041, 'Ders Adı':'1.  ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220042, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220043, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220044, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220045, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
                     
         elif self.ui.cmb_bolum.currentText() == 'Endüstri Muhendisligi':                             ##### ENDÜSTRİ MÜHENDİSLİĞİ
             items=self.ui.Group_AcilanDers.findChildren(QtWidgets.QRadioButton)    

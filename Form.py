@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -54,7 +55,7 @@ class Ui_MainWindow(object):
         self.lbl_dersprogrami.setFont(font)
         self.lbl_dersprogrami.setObjectName("lbl_dersprogrami")
         self.lbl_anadilsecilendersler = QtWidgets.QLabel(self.centralwidget)
-        self.lbl_anadilsecilendersler.setGeometry(QtCore.QRect(540, 110, 261, 21))
+        self.lbl_anadilsecilendersler.setGeometry(QtCore.QRect(540, 130, 261, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.lbl_anadilsecilendersler.setFont(font)
@@ -117,14 +118,14 @@ class Ui_MainWindow(object):
         self.linedit_ara.setGeometry(QtCore.QRect(330, 190, 171, 22))
         self.linedit_ara.setObjectName("linedit_ara")
         self.Table_Secilen = QtWidgets.QTableWidget(self.centralwidget)
-        self.Table_Secilen.setGeometry(QtCore.QRect(540, 170, 711, 161))
+        self.Table_Secilen.setGeometry(QtCore.QRect(540, 180, 711, 161))
         self.Table_Secilen.setObjectName("Table_Secilen")
         self.Table_Secilen.setColumnCount(1)
         self.Table_Secilen.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.Table_Secilen.setHorizontalHeaderItem(0, item)
         self.lbl_kredi_akts = QtWidgets.QLabel(self.centralwidget)
-        self.lbl_kredi_akts.setGeometry(QtCore.QRect(540, 130, 151, 21))
+        self.lbl_kredi_akts.setGeometry(QtCore.QRect(540, 150, 151, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setBold(True)
@@ -186,12 +187,28 @@ class Ui_MainWindow(object):
         self.radio_3sinif_alt = QtWidgets.QRadioButton(self.Group_YerineDersler)
         self.radio_3sinif_alt.setGeometry(QtCore.QRect(190, 10, 51, 20))
         self.radio_3sinif_alt.setObjectName("radio_3sinif_alt")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(840, 20, 101, 81))
+        self.label.setMaximumSize(QtCore.QSize(101, 81))
+        self.label.setStyleSheet("QLabel {\n"
+"    background-image: url(\":/yeniÖnek/20200406220947!Esogu_logo.png\");\n"
+"}\n"
+"")
+        self.label.setText("")
+        self.label.setTextFormat(QtCore.Qt.AutoText)
+        self.label.setPixmap(QtGui.QPixmap(":/yeniÖnek/20200406220947!Esogu_logo.png"))
+        self.label.setScaledContents(True)
+        self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label.setWordWrap(False)
+        self.label.setIndent(6)
+        self.label.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
+        self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1327, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1327, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
 
@@ -207,7 +224,7 @@ class Ui_MainWindow(object):
         self.lbl_anadilsecilendersler.setText(_translate("MainWindow", "ANADİL İÇİN SEÇİLEN DERSLER"))
         self.lbl_yerinealinabilecekdersler.setText(_translate("MainWindow", "YERİNE ALINABİLECEK DERSLER"))
         self.btn_yerinekle.setText(_translate("MainWindow", "Yerine Ekle"))
-        self.btn_yenidersekle.setText(_translate("MainWindow", "Yeni Ders Ekle"))
+        self.btn_yenidersekle.setText(_translate("MainWindow", "Yerine Ders Ekle"))
         self.lbl_anadal_2.setText(_translate("MainWindow", "ARA (Büyük Harf ile):"))
         item = self.Table_Secilen.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "SADF"))
@@ -223,3 +240,4 @@ class Ui_MainWindow(object):
         self.radio_1sinif_alt.setText(_translate("MainWindow", "1.Sınıf"))
         self.radio_4sinif_alt.setText(_translate("MainWindow", "4.Sınıf"))
         self.radio_3sinif_alt.setText(_translate("MainWindow", "3.Sınıf"))
+import test_rc
