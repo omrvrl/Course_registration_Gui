@@ -32,9 +32,9 @@ class Window(QtWidgets.QMainWindow):
 
         self.ui.lbl_toplamiyazin.setText(f"TOPLAMI YAZIN: {self.sayi1} + {self.sayi2}")
         self.ders_tarihleri=[
-            {'Kod': '1512201' , 'row': [1,2,3] , 'col': 1},              #1 -> 9.00  2 -> 10.00 3 -> 11.00 4-> 12.00 5->13.00 6->14.00  ||| pazart 1 salı 2 çarş 3 
-            {'Kod': '1512202' , 'row': [5,6,7] , 'col': 1},            #7 -> 15.00 8 -> 16.00 9 -> 17.00 10 -> 18.00 11 -> 19.00          perş 4 cuma 5 cumart 6
-            {'Kod': '1512203' , 'row': [8,9] , 'col': 1},           #12 -> 20.00 13 -> 21.00 14 ->22.00 15 -> 23.00 
+            {'Kod': '1512201' , 'row': [1,2,3] , 'col': 1},        
+            {'Kod': '1512202' , 'row': [5,6,7] , 'col': 1},       
+            {'Kod': '1512203' , 'row': [8,9] , 'col': 1},          
             {'Kod': '1512204' , 'row': [1,2,3] , 'col': 2},
             {'Kod': '1512205' , 'row': [6,7,8] , 'col': 2},
             {'Kod': '1512206' , 'row': [8,9,10] , 'col': 2},
@@ -59,9 +59,9 @@ class Window(QtWidgets.QMainWindow):
             {'Kod': '1512224' , 'row': [9] , 'col': 4},
             {'Kod': '1512226' , 'row': [11,12] , 'col': 4},
             {'Kod': '1512227' , 'row': [10,11] , 'col': 5},
-            {'Kod': '151228' ,  'row': [9,10] , 'col': 5},
+            {'Kod': '1512228' ,  'row': [9,10] , 'col': 5},
             {'Kod': '1512229' , 'row': [6,7] , 'col': 6}]
-        
+        self.overlapList=[]
 
 
 # TABLE WİDGET CONFİGURATION
@@ -115,7 +115,7 @@ class Window(QtWidgets.QMainWindow):
             print('TEBRİKLER DERSLERİNİZ BAŞARIYLA KAYDEDİLDİ.')
         else:
             print('Lütfen girilen sayıları doğru toplayınız.')
-        
+    
         
 
     def YeniDersEkle(self):
@@ -127,11 +127,11 @@ class Window(QtWidgets.QMainWindow):
             rowIndex =self.ui.Table_Secilen.rowCount()
             try:
 
-                self.AddtoDersProgrami(rowIndex)
                 if item.text() in [(QTableWidgetItem(self.ui.Table_Secilen.item(row, col))).text() for col in range(self.ui.Table_Secilen.columnCount()) for row in range(self.ui.Table_acilandersler.rowCount())]:
-
                     raise TypeError('Zaten bu dersi Seçmişsiniz!!!')
-
+                if self.CheckOverlapping(rowIndex):
+                    raise TypeError('Bu ders seçtiğiniz diğer dersler ile çakışmaktadır!!!!')
+                
                 self.ui.Table_Secilen.insertRow(rowIndex)
                 if item.column() == 0:
                     self.ui.Table_Secilen.setItem(rowIndex,0,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
@@ -155,6 +155,7 @@ class Window(QtWidgets.QMainWindow):
                     self.ui.Table_Secilen.setItem(rowIndex,1,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-2)))
                     self.ui.Table_Secilen.setItem(rowIndex,2,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column()-1)))
                     self.ui.Table_Secilen.setItem(rowIndex,3,QTableWidgetItem(self.ui.Table_acilandersler.item(item.row(),item.column())))
+                self.AddtoDersProgrami(rowIndex)
             except TypeError as err:
                 print(err)
 
@@ -163,13 +164,28 @@ class Window(QtWidgets.QMainWindow):
     def AddtoDersProgrami(self,rowIndex):
         ders = QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0))
         brush = QBrush(QColor(200, 243, 178))  # RGB color (red)
-    
         for liste in self.ders_tarihleri:
-            if ders.text() == liste['Kod']:
+            print(f'addtodersprogramı: {liste["Kod"]} --> {ders.text()}')
+            if liste['Kod'] == ders.text():
                 for ro in liste['row']:
-                    self.ui.Table_DersProgrami.setItem(liste['row'],liste['col'],QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
-                    self.ui.Table_DersProgrami.item(liste['row'],liste['col']).setBackground(brush)
+                    self.ui.Table_DersProgrami.setItem(ro,liste['col'],QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0)))
+                    self.ui.Table_DersProgrami.item(ro,liste['col']).setBackground(brush)
 
+    def CheckOverlapping(self,rowIndex):
+        # ders = QTableWidgetItem(self.ui.Table_Secilen.item(rowIndex,0))
+        for liste in self.ders_tarihleri:
+            for ders in self.ui.Table_acilandersler.selectedItems():
+                print(liste['Kod'])
+                print(QTableWidgetItem(self.ui.Table_acilandersler.item(ders.row(),0)).text())
+                if liste['Kod'] == QTableWidgetItem(self.ui.Table_acilandersler.item(ders.row(),0)).text():
+                    for ro in liste['row']:
+                        if (ro,liste['col']) not in self.overlapList:
+                            self.overlapList.append((ro,liste['col']))
+                            return False
+                        elif ro == len(liste['row']):
+                            print('overlapping')
+                else:
+                    print('--')
 
         # elif ders.text()  == 'INTRODUCTION TO EMBEDDED SYSTEMS':
         #     self.ui.Table_DersProgrami.setItem(1,1,QTableWidgetItem(self.ui.Table_Secilen.item(ders.row(),0)))
@@ -254,24 +270,24 @@ class Window(QtWidgets.QMainWindow):
             self.fillTAbleforIbf()
         
     def fillTAbleforMuhendislik(self):
-        if self.ui.cmb_bolum.currentText() == 'Elektrik Elektronik Muhendisligi':     ##### ELEKTRİK ELEKTRONİKMÜHENDİSLİĞi
+        if self.ui.cmb_bolum.currentText() == 'Elektrik Elektronik Muhendisligi':     ##### ELEKTRİK ELEKTRONİKMÜHENDİSLİĞi 
             items=self.ui.Group_AcilanDers.findChildren(QtWidgets.QRadioButton) 
             for ders in items:   
                 if ders.text() == '4.Sınıf' and ders.isChecked():                                        
                     self.ders_listesi =[
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'4 ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 1512201, 'Ders Adı':'4 ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512202, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512203, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512205, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 1512206, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
 
                 elif ders.text() == '3.Sınıf' and ders.isChecked():                                       
                     self.ders_listesi=[
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'3OBJECT ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
-                        {'Ders Kodu' : 151220001, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
+                        {'Ders Kodu' : 151220004, 'Ders Adı':'3OBJECT ORIENTED PROGRAMMING I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220007, 'Ders Adı':'INTRODUCTION TO EMBEDDED SYSTEMS','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220008, 'Ders Adı':'DIGITAL SIGNAL PROCESSING','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220009, 'Ders Adı':'POWER SYSTEM ANALYSIS I','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'},
+                        {'Ders Kodu' : 151220010, 'Ders Adı':'THE ENGINEER AND SOCIETY','TeoUygKrediAkts': '2  0  2  3', 'Kontenjan': '0/50'}]
 
                 elif ders.text() == '2.Sınıf' and ders.isChecked():                                   
                     self.ders_listesi=[
