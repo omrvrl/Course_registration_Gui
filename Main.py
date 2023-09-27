@@ -1,11 +1,11 @@
 import sys
-from PyQt5 import QtWidgets 
+from PyQt5 import QtGui, QtWidgets 
 from PyQt5.QtWidgets import QLineEdit
 from Form import Ui_MainWindow
 from PyQt5.QtWidgets import QTableWidgetItem
 import random
-from PyQt5.QtGui import QColor, QBrush
-
+from PyQt5.QtGui import QColor, QBrush, QPainter, QPen
+from PyQt5.QtCore import Qt
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -112,7 +112,7 @@ class Window(QtWidgets.QMainWindow):
         
         for row in range(self.ui.Table_DersProgrami.rowCount()):
             self.ui.Table_DersProgrami.setRowHeight(row,5)
-            for col in range(self.ui.Table_DersProgrami.columnCount()):
+            for col in range(self.ui.Table_DersProgrami.columnCount()):  
                 self.ui.Table_DersProgrami.setColumnWidth(row,105)
 
 
@@ -127,11 +127,19 @@ class Window(QtWidgets.QMainWindow):
         self.ui.btn_yenidersekle.clicked.connect(self.YeniDersEkle)
         self.ui.btn_derslerikaydet.clicked.connect(self.DersleriKaydet)
 
+    def paintEvent(self,event):
+        painter = QPainter(self)
+
+        painter.setPen(QPen(Qt.red,2,Qt.SolidLine))
+        painter.drawLine(0,52,500,52)
+        painter.drawLine(0,510,500,510)
+        painter.drawLine(540,408,1250,408)
+
     def DersleriKaydet(self):
         if (self.sayi1 + self.sayi2) ==  int(self.ui.linedit_toplam.text()):
             print('TEBRİKLER DERSLERİNİZ BAŞARIYLA KAYDEDİLDİ.')
         else:
-            print('Lütfen girilen sayıları doğru toplayınız.')
+            print('DOĞRULAMA GEÇERSİZ.')
     
         
 
