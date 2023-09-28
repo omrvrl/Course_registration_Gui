@@ -157,13 +157,20 @@ class Window(QtWidgets.QMainWindow):
                         self.ui.lbl_kredi_akts.setText(f'KREDİ: {self.toplam_kredi} AKTS: {0}')
 
     def UpdateKontenjan(self):
-        for row in (range(self.ui.Table_Secilen.rowCount())):
-            secilen = self.ui.Table_Secilen.item(row,0).text()
-            for ders in self.ders_listesi:
-                if (str(ders['Ders Kodu']) == str(secilen)):   
-                    ders['student_number'] +=1
-                    self.InserttoTable()
-                    break
+        try:
+            if self.ui.Table_Secilen.rowCount()== 0:
+                raise TypeError('No classes to register!!')
+
+            for row in (range(self.ui.Table_Secilen.rowCount())):
+                secilen = QTableWidgetItem(self.ui.Table_Secilen.item(row,0)).text()
+                for ders in self.ders_listesi:
+                    if (str(ders['Ders Kodu']) == str(secilen)):   
+                        ders['student_number'] +=1
+                        self.InserttoTable()
+                        break
+
+        except TypeError as err:
+            print(err)
         
     def paintEvent(self,event):
         painter = QPainter(self)
@@ -174,11 +181,15 @@ class Window(QtWidgets.QMainWindow):
         painter.drawLine(540,408,1250,408)
 
     def DersleriKaydet(self):
-        if (self.sayi1 + self.sayi2) ==  int(self.ui.linedit_toplam.text()):
-            print('TEBRİKLER DERSLERİNİZ BAŞARIYLA KAYDEDİLDİ.')
-            self.UpdateKontenjan()
+
+        if (self.ui.linedit_toplam.text()):
+            if (self.sayi1 + self.sayi2) ==  int(self.ui.linedit_toplam.text()):
+                print('TEBRİKLER DERSLERİNİZ BAŞARIYLA KAYDEDİLDİ.')
+                self.UpdateKontenjan()
+            else:
+                print('INVALİD VALİDATİON.')
         else:
-            print('DOĞRULAMA GEÇERSİZ.')
+            print('PLEASE ENTER A NUMBER FOR VALİDATİON')
     
     def YeniDersEkle(self):
         self.ui.Table_Secilen.setHorizontalHeaderLabels(('Silme','Ders Kodu','Ders Adi','Teo Uyg Akts','Yerine'))
