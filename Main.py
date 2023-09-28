@@ -28,6 +28,7 @@ class Window(QtWidgets.QMainWindow):
         self.toplam_kredi=0
         self.rowIndex =self.ui.Table_Secilen.rowCount()
         self.ui.lbl_toplamiyazin.setText(f"TOPLAMI YAZIN: {self.sayi1} + {self.sayi2}")
+        self.btn_sil_index=0
         self.ders_tarihleri=[
             {'Kod': '1512201' , 'row': [1,2,3] , 'col': 1},        
             {'Kod': '1512202' , 'row': [5,6,7] , 'col': 1},       
@@ -141,13 +142,14 @@ class Window(QtWidgets.QMainWindow):
 
     def OnClicked_Silme(self,row):
         sender_button = self.sender().text()
-        # selected_row = 1
-        # selected_col = 1
+        for row in range(self.ui.Table_Secilen.rowCount()):
+            cell_widget = self.ui.Table_Secilen.cellWidget(row,0)
+            if cell_widget and isinstance(cell_widget, QPushButton):
+                if cell_widget.text() == sender_button:
+                    self.ui.Table_Secilen.removeRow(row)
+                    self.toplam_kredi-=1
+                    
 
-        # # Check if there is an item in the cell
-        # if self.ui.Table_Secilen.item(selected_row, selected_col):
-        #    self.ui.Table_Secilen.takeItem(selected_row, selected_col)
-        print(f"Button clicked in Row {sender_button}")
 
     def UpdateKredi(self):
             for item in self.ui.Table_acilandersler.selectedItems():
@@ -193,10 +195,8 @@ class Window(QtWidgets.QMainWindow):
     
     def YeniDersEkle(self):
         self.ui.Table_Secilen.setHorizontalHeaderLabels(('Silme','Ders Kodu','Ders Adi','Teo Uyg Akts','Yerine'))
-        
         for item in self.ui.Table_acilandersler.selectedItems():
             # print(item.row(),item.column(),item.text())
-            rowIndex =self.ui.Table_Secilen.rowCount()
             try:
 
                 if item.text() in [(QTableWidgetItem(self.ui.Table_Secilen.item(row, col))).text() for col in range(self.ui.Table_Secilen.columnCount()) for row in range(self.ui.Table_acilandersler.rowCount())]:
@@ -207,11 +207,12 @@ class Window(QtWidgets.QMainWindow):
                     raise TypeError('KREDİNİZİ AŞTINIZ!! MAX KREDİ: 22 ')
                 
 
-                btn_sil = QPushButton()
+                btn_sil = QPushButton(f'{self.btn_sil_index}')
                 btn_sil.setIcon(QIcon('delete-icon.jpeg'))
                 btn_sil.setStyleSheet("color: white; border: none; padding: 5px;")
                 btn_sil.resize(10,10)
-                btn_sil.clicked.connect(lambda row=2: self.OnClicked_Silme(row))
+                btn_sil.clicked.connect(self.OnClicked_Silme)
+                self.btn_sil_index+=1
 
                 self.UpdateKredi()
                 self.ui.Table_Secilen.insertRow(self.rowIndex)
